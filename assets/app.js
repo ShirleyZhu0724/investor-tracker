@@ -129,7 +129,10 @@
       '<div class="profile-head"><div>' +
       "<h2>" + esc(p.name) + "</h2>" +
       '<p class="tagline">' + esc(p.tagline || "") + "</p>" +
-      "</div><div class=\"updated\">最近更新：" + esc(p.lastUpdate || "—") + "</div></div>" +
+      "</div><div class=\"head-right\">" +
+      '<div class="updated">最近更新：' + esc(p.lastUpdate || "—") + "</div>" +
+      '<a class="davbtn" href="dav/' + esc(p.id) + '.html" target="_blank" rel="noopener">🧠 人格拆解</a>' +
+      "</div></div>" +
       '<div class="profile-meta">' +
       "<span><b>风格</b>" + esc(p.style || "—") + "</span>" +
       "<span><b>风险偏好</b>" + esc(p.riskAppetite || "—") + "</span>" +

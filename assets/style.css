@@ -107,6 +107,15 @@ a { color: var(--accent); }
 .profile-head h2 { margin: 0 0 4px; }
 .tagline { color: var(--muted); margin: 0; }
 .updated { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.head-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.davbtn {
+  display: inline-block; font-size: 12px; font-weight: 700;
+  color: var(--accent); background: var(--accent-soft);
+  border: 1px solid var(--accent); border-radius: 999px;
+  padding: 6px 14px; text-decoration: none; white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.davbtn:hover { background: var(--accent); color: #fff; }
 .profile-meta { display: flex; gap: 22px; margin-top: 14px; flex-wrap: wrap; }
 .profile-meta span { font-size: 13px; color: var(--muted); }
 .profile-meta b { color: var(--text); margin-right: 6px; }
