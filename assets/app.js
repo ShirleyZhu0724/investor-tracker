@@ -267,6 +267,34 @@
     return '<section class="card"><h3>重要观点</h3><ul class="timeline">' + items + "</ul></section>";
   }
 
+  function renderCaseStudies(p) {
+    var cs = p.caseStudies || [];
+    if (!cs.length) return '<section class="card"><h3>案例研究</h3><p class="muted">暂无数据。</p></section>';
+    return cs.map(function (c) {
+      var items = (c.items || []).slice().sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); }).map(function (it) {
+        var tags = (it.tags || []).length
+          ? '<div class="tags">' + it.tags.map(function (t) { return '<span class="tag">#' + esc(t) + "</span>"; }).join("") + "</div>"
+          : "";
+        var body = esc(it.content).replace(/\n/g, "<br>");
+        return (
+          '<li class="tl-item case-item">' +
+          '<div class="tl-date">' + esc(it.date || "") + (it.stage ? ' · <span class="stage">' + esc(it.stage) + "</span>" : "") + "</div>" +
+          '<div class="tl-title"><b>' + esc(it.title || "") + "</b></div>" +
+          '<div class="tl-body">' + body + "</div>" +
+          (it.source ? '<div class="muted" style="font-size:12px;margin-top:6px;">来源：' + esc(it.source) + "</div>" : "") +
+          tags + "</li>"
+        );
+      }).join("");
+      return (
+        '<section class="card case-study">' +
+        '<h3>' + esc(c.title || "案例研究") + "</h3>" +
+        (c.company ? '<p class="muted">' + esc(c.company) + "</p>" : "") +
+        (c.summary ? '<p class="case-summary">' + esc(c.summary) + "</p>" : "") +
+        '<ul class="timeline">' + items + "</ul></section>"
+      );
+    }).join("");
+  }
+
   function renderPhilo(p) {
     var ph = p.philosophy || {};
     var html = '<section class="card"><h3>投资理念</h3>';
@@ -311,6 +339,7 @@
     var tabs = [
       ["holdings", "最新持仓"],
       ["views", "重要观点"],
+      ["cases", "泡泡玛特"],
       ["philo", "投资理念"],
       ["timeline", "跟踪时间线"]
     ];
@@ -321,6 +350,7 @@
     var content;
     if (tabState === "holdings") content = '<div id="holdingsWrap">' + renderHoldingsHTML(p) + "</div>";
     else if (tabState === "views") content = renderViews(p);
+    else if (tabState === "cases") content = renderCaseStudies(p);
     else if (tabState === "philo") content = renderPhilo(p);
     else content = renderTimeline(p);
 
@@ -350,14 +380,24 @@
       var v = (p.viewpoints || []).filter(function (x) {
         return (x.content + " " + (x.tags || []).join(" ")).toLowerCase().indexOf(q) >= 0;
       });
+      var csHits = [];
+      (p.caseStudies || []).forEach(function (c) {
+        var cText = [c.title, c.company, c.summary].join(" ").toLowerCase();
+        if (cText.indexOf(q) >= 0) csHits.push({ type: "summary", text: c.title });
+        (c.items || []).forEach(function (it) {
+          var itText = [it.title, it.content, (it.tags || []).join(" ")].join(" ").toLowerCase();
+          if (itText.indexOf(q) >= 0) csHits.push({ type: "item", text: it.title || it.content });
+        });
+      });
       var ph = p.philosophy || {};
       var phText = [ph.summary, (ph.points || []).join(" "), (ph.quotes || []).join(" ")].join(" ").toLowerCase();
       var phHit = phText.indexOf(q) >= 0;
-      if (h.length || v.length || phHit) {
+      if (h.length || v.length || csHits.length || phHit) {
         found = true;
         html += "<h3 class=\"res-person\">" + esc(p.name) + "</h3>";
         if (h.length) html += '<div class="res-group">持仓：' + h.map(function (x) { return '<span class="chip">' + esc(x.name) + "</span>"; }).join("") + "</div>";
         if (v.length) html += '<div class="res-group">观点：' + v.map(function (x) { return esc(x.content); }).join("；") + "</div>";
+        if (csHits.length) html += '<div class="res-group">案例：' + csHits.map(function (x) { return esc(x.text); }).join("；") + "</div>";
         if (phHit) html += '<div class="res-group">投资理念 命中</div>';
       }
     });

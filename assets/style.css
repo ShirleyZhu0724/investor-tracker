@@ -266,3 +266,10 @@ details.hist[open] > summary::before { content: "▾ "; }
   .htag { width: auto; }
   .hrow { flex-wrap: wrap; gap: 6px; }
 }
+
+/* ============ 案例研究 ============ */
+.case-study { border-left: 4px solid var(--accent); }
+.case-summary { color: var(--muted); font-size: 14px; margin: -6px 0 16px; line-height: 1.7; }
+.case-item .tl-title { font-size: 14px; margin: 4px 0 6px; color: var(--text); }
+.case-item .tl-body { font-size: 14px; line-height: 1.75; }
+.case-item .stage { color: var(--accent); font-weight: 600; }
