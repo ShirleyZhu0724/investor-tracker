@@ -336,13 +336,14 @@
   }
 
   function renderPerson(p) {
+    if (tabState === "cases" && !(p.caseStudies && p.caseStudies.length)) tabState = "holdings";
     var tabs = [
       ["holdings", "最新持仓"],
       ["views", "重要观点"],
-      ["cases", "泡泡玛特"],
       ["philo", "投资理念"],
       ["timeline", "跟踪时间线"]
     ];
+    if (p.caseStudies && p.caseStudies.length) tabs.push(["cases", "泡泡玛特"]);
     var tabHtml = '<div class="tabs">' + tabs.map(function (t) {
       return '<button class="tab ' + (tabState === t[0] ? "active" : "") + '" data-t="' + t[0] + '">' + t[1] + "</button>";
     }).join("") + "</div>";
