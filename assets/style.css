@@ -161,6 +161,9 @@ table.data.dataroma .act {
   display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 6px;
   background: var(--accent-soft); color: var(--accent); font-weight: 600;
 }
+td.sc-add { color: #d9472b; font-weight: 600; }
+td.sc-cut { color: #07a35a; font-weight: 600; }
+td.sc-flat { color: var(--muted); }
 
 /* ============ 时间线 ============ */
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }

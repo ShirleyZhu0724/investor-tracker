@@ -153,7 +153,7 @@
     });
 
     // 表头
-    var headers = ["标的", "仓位", "变化方向", "上一期占比"];
+    var headers = ["标的", "仓位", "变化方向", "股数变化", "上一期占比"];
     if (hasDataroma) {
       headers = headers.concat(["股数", "已报告价", "价值", "当前价", "+/-已报告价", "52周低", "52周高", "近期活动", "描述"]);
     } else {
@@ -169,12 +169,20 @@
       var prevCell = (r.prevW == null) ? "—" : r.prevW + "%";
       var wCell = r.status === "out" ? "0%" : (h.weight || "—");
 
+      var scCls = "na";
+      if (h.shareChange) {
+        if (h.shareChange.indexOf("新建") === 0 || h.shareChange.charAt(0) === "+") scCls = "sc-add";
+        else if (h.shareChange.charAt(0) === "-") scCls = "sc-cut";
+        else scCls = "sc-flat";
+      }
+      var scCell = '<td class="num ' + scCls + '">' + (h.shareChange ? esc(h.shareChange) : "—") + "</td>";
       var cells =
         "<td><b>" + esc(h.name) + "</b>" +
           (h.ticker ? ' <span class="ticker">' + esc(h.ticker) + "</span>" : "") +
           (h.account ? ' <span class="acct">' + esc(h.account) + "</span>" : "") + "</td>" +
         "<td>" + esc(wCell) + "</td>" +
         '<td><span class="dir ' + d.cls + '">' + dirTxt + "</span></td>" +
+        scCell +
         '<td class="muted">' + prevCell + "</td>";
 
       if (hasDataroma) {
