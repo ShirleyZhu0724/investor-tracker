@@ -22,8 +22,8 @@
 
 window.META = {
   sample: false,
-  updatedAt: "2026-08-11",
-  note: "数据来自公开网络检索（2026-08-01）；2026-08-11 补充金渐成国际账户/精确占比/理念金句/人物画像，并新增鹿鼎公 2026-08-10 股数快照（含长江电力做T波动降本）；仅供个人跟踪用途，非投资建议。"
+  updatedAt: "2026-08-17",
+  note: "数据来自公开网络检索（2026-08-01）；2026-08-11 补充金渐成国际账户/精确占比/理念金句/人物画像 + 鹿鼎公 2026-08-10 股数快照（含长江电力做T）；2026-08-17 新增段永平 2026 Q2 13F（dataroma，18只/$19.1B，组合日2026-06-30）；仅供个人跟踪用途，非投资建议。"
 };
 
 window.PEOPLE = [
@@ -411,7 +411,7 @@ window.PEOPLE = [
     tagline: "价值投资实践者（大道）：重仓苹果、伯克希尔，美股13F公开持仓",
     style: "价值投资 / 长期持有 / 集中重仓",
     riskAppetite: "中高（高度集中，不懂不做）",
-    lastUpdate: "2026-08-09",
+    lastUpdate: "2026-08-17",
     portfolios: [
       {
         date: "2025-03-31",
@@ -500,7 +500,7 @@ window.PEOPLE = [
       },
       {
         date: "2026-03-31",
-        label: "2026年Q1 · 13F（最新·已核实）",
+        label: "2026年Q1 · 13F（已核实）",
         source: "dataroma",
         portfolioValue: "$20.0B",
         stockCount: 19,
@@ -526,12 +526,46 @@ window.PEOPLE = [
           { name: "Innodata Inc.", ticker: "INOD", weight: "0.00%", w: 0.00, shares: "10,000", reportedPrice: "$38.60", value: "$386,000", currentPrice: "$62.83", change: "+62.77%", weekLow: "$34.23", weekHigh: "$125.14", activity: "Buy", note: "新建仓Innodata。", date: "2026-03-31" },
           { name: "Tempus Ai Inc", ticker: "TEM", weight: "0.00%", w: 0.00, shares: "20,000", reportedPrice: "$45.20", value: "$904,000", currentPrice: "$43.87", change: "-2.94%", weekLow: "$40.77", weekHigh: "$104.32", activity: "Reduce 81.82%", note: "Tempus AI大幅减仓约9万股。", date: "2026-03-31" }
         ]
+      },
+      {
+        date: "2026-06-30",
+        label: "2026年Q2 · 13F（最新·已核实）",
+        source: "dataroma",
+        portfolioValue: "$19.1B",
+        stockCount: 18,
+        note: "投资组合价值约191亿美元（$19,100,583,000，组合日2026-06-30，dataroma披露）；相对Q1：清仓台积电(TSM)、CrowdStrike(CRWD)，重新建仓阿里巴巴(BABA，Q1曾清仓)；大幅减仓英伟达(-54.6%，约764万股，从12.07%降至6.58%)、谷歌(-46.9%)、微软(-25.8%)、联合健康(-33.6%)；苹果再减6.4%但占比被动升至41.05%重回第一，伯克希尔微加至24.18%稳居第二。注意：13F仅披露美股多头，不含A股/港股/期权；港交所7/30泡泡玛特权益变动(7.65%→5.55%)为期权履约，与13F无关。",
+        holdings: [
+          { name: "Apple Inc.", ticker: "AAPL", weight: "41.05%", w: 41.05, shares: "27,098,707", reportedPrice: "$289.36", value: "$7,841,282,000", currentPrice: "$305.93", change: "+5.73%", weekLow: "$222.96", weekHigh: "$344.27", activity: "Reduce 6.38%", note: "第一重仓，Q2股数再减约6.4%（约185万股），但因英伟达/谷歌大幅减仓，占比被动升至41.05%重回首位。", date: "2026-06-30" },
+          { name: "Berkshire Hathaway CL B", ticker: "BRK.B", weight: "24.18%", w: 24.18, shares: "9,229,696", reportedPrice: "$500.39", value: "$4,618,448,000", currentPrice: "$504.03", change: "+0.73%", weekLow: "$464.01", weekHigh: "$537.74", activity: "Add 0.90%", note: "压舱石，微幅加仓约0.9%（+8万余股），稳居第二。", date: "2026-06-30" },
+          { name: "Pinduoduo Inc.", ticker: "PDD", weight: "9.99%", w: 9.99, shares: "25,022,094", reportedPrice: "$76.28", value: "$1,908,685,000", currentPrice: "$84.79", change: "+11.16%", weekLow: "$71.94", weekHigh: "$139.41", activity: "Add 26.71%", note: "拼多多加仓约26.7%（+527万股），维持第四大重仓。", date: "2026-06-30" },
+          { name: "Tesla Inc.", ticker: "TSLA", weight: "7.44%", w: 7.44, shares: "3,380,400", reportedPrice: "$420.60", value: "$1,421,796,000", currentPrice: "$342.27", change: "-18.62%", weekLow: "$297.38", weekHigh: "$498.83", activity: "Reduce 0.84%", note: "特斯拉微减0.8%（约2.8万股），占比升至7.44%。", date: "2026-06-30" },
+          { name: "NVIDIA Corp.", ticker: "NVDA", weight: "6.58%", w: 6.58, shares: "6,280,675", reportedPrice: "$200.09", value: "$1,256,700,000", currentPrice: "$225.16", change: "+12.53%", weekLow: "$163.85", weekHigh: "$236.26", activity: "Reduce 54.63%", note: "英伟达大幅减仓逾54%（约764万股），从12.07%降至6.58%，明显获利了结。", date: "2026-06-30" },
+          { name: "Alphabet Inc. CL C", ticker: "GOOG", weight: "3.64%", w: 3.64, shares: "1,968,600", reportedPrice: "$353.33", value: "$695,565,000", currentPrice: "$343.54", change: "-2.77%", weekLow: "$196.90", weekHigh: "$404.23", activity: "Reduce 46.88%", note: "谷歌减仓近47%（约174万股），占比降至3.64%。", date: "2026-06-30" },
+          { name: "Occidental Petroleum", ticker: "OXY", weight: "2.61%", w: 2.61, shares: "10,261,500", reportedPrice: "$48.57", value: "$498,401,000", currentPrice: "$58.36", change: "+20.16%", weekLow: "$38.44", weekHigh: "$67.14", activity: "Hold", note: "西方石油持股不变，占比随组合变化降至2.61%。", date: "2026-06-30" },
+          { name: "Microsoft Corp.", ticker: "MSFT", weight: "1.47%", w: 1.47, shares: "754,100", reportedPrice: "$373.02", value: "$281,294,000", currentPrice: "$495.40", change: "+32.81%", weekLow: "$349.20", weekHigh: "$550.24", activity: "Reduce 25.78%", note: "微软减仓约25.8%（约26万股），占比降至1.47%。", date: "2026-06-30" },
+          { name: "Credo Technology Group", ticker: "CRDO", weight: "1.00%", w: 1.00, shares: "701,200", reportedPrice: "$271.95", value: "$190,691,000", currentPrice: "$259.90", change: "-4.43%", weekLow: "$86.49", weekHigh: "$308.67", activity: "Reduce 6.66%", note: "CRDO减仓约6.7%（股价期间大涨，占比反升至1.00%）。", date: "2026-06-30" },
+          { name: "United Health Group Inc.", ticker: "UNH", weight: "0.87%", w: 0.87, shares: "399,600", reportedPrice: "$415.63", value: "$166,086,000", currentPrice: "$401.73", change: "-3.34%", weekLow: "$254.51", weekHigh: "$461.62", activity: "Reduce 33.56%", note: "联合健康减仓约33.6%（约20万股）。", date: "2026-06-30" },
+          { name: "Walt Disney Co.", ticker: "DIS", weight: "0.86%", w: 0.86, shares: "1,706,600", reportedPrice: "$96.25", value: "$164,260,000", currentPrice: "$106.85", change: "+11.01%", weekLow: "$91.48", weekHigh: "$118.07", activity: "Add 12.89%", note: "迪士尼加仓约12.9%（+19.5万股）。", date: "2026-06-30" },
+          { name: "Alibaba Group Holdings", ticker: "BABA", weight: "0.15%", w: 0.15, shares: "301,400", reportedPrice: "$95.98", value: "$28,928,000", currentPrice: "$123.81", change: "+29.00%", weekLow: "$91.99", weekHigh: "$190.92", activity: "Buy", note: "重新建仓阿里巴巴（Q1曾清仓，Q2买回约30万股）。", date: "2026-06-30" },
+          { name: "Circle Internet Group Inc", ticker: "CRCL", weight: "0.07%", w: 0.07, shares: "200,000", reportedPrice: "$62.63", value: "$12,526,000", currentPrice: "$71.60", change: "+14.32%", weekLow: "$49.90", weekHigh: "$159.47", activity: "Hold", note: "Circle持股不变。", date: "2026-06-30" },
+          { name: "Palantir Technologies Inc.", ticker: "PLTR", weight: "0.04%", w: 0.04, shares: "60,000", reportedPrice: "$116.67", value: "$7,000,000", currentPrice: "$174.04", change: "+49.17%", weekLow: "$106.37", weekHigh: "$207.52", activity: "Hold", note: "Palantir持股不变。", date: "2026-06-30" },
+          { name: "Synopsys Inc.", ticker: "SNPS", weight: "0.02%", w: 0.02, shares: "10,000", reportedPrice: "$446.10", value: "$4,461,000", currentPrice: "$421.50", change: "-5.51%", weekLow: "$366.00", weekHigh: "$626.24", activity: "Hold", note: "Synopsys持股不变。", date: "2026-06-30" },
+          { name: "Snowflake Inc.", ticker: "SNOW", weight: "0.01%", w: 0.01, shares: "10,000", reportedPrice: "$254.50", value: "$2,545,000", currentPrice: "$328.92", change: "+29.24%", weekLow: "$118.30", weekHigh: "$341.95", activity: "Hold", note: "Snowflake持股不变。", date: "2026-06-30" },
+          { name: "Tempus Ai Inc", ticker: "TEM", weight: "0.01%", w: 0.01, shares: "20,000", reportedPrice: "$57.95", value: "$1,159,000", currentPrice: "$52.10", change: "-10.09%", weekLow: "$40.77", weekHigh: "$104.32", activity: "Hold", note: "Tempus AI持股不变。", date: "2026-06-30" },
+          { name: "Innodata Inc.", ticker: "INOD", weight: "0.00%", w: 0.00, shares: "10,000", reportedPrice: "$75.60", value: "$756,000", currentPrice: "$63.85", change: "-15.54%", weekLow: "$34.23", weekHigh: "$125.14", activity: "Hold", note: "Innodata持股不变。", date: "2026-06-30" }
+        ]
       }
     ],
     viewpoints: [
       {
         date: "2026-03-31",
         content: "2026年Q1 13F披露：组合价值首次突破200亿美元（$20,003,997,000），持股19只。最大动作：清仓阿里巴巴（BABA），新建仓特斯拉（TSLA）、联合健康（UNH）、Circle（CRCL）、Palantir（PLTR）、CrowdStrike（CRWD）、Snowflake（SNOW）、Innodata（INOD）、Synopsys（SNPS）；同时大幅加仓英伟达（+91%）、拼多多（+71%）、谷歌（+99%）、伯克希尔（+27%）、迪士尼（+112%）、CRDO（+431%）。苹果占比从50.30%降至36.72%，台积电从2.13%降至0.26%。",
+        source: "dataroma",
+        tags: ["13F", "调仓", "美股"]
+      },
+      {
+        date: "2026-06-30",
+        content: "2026年Q2 13F披露（组合日2026-06-30，dataroma于2026-08-17更新）：组合价值约191亿美元（$19,100,583,000），持股18只。最大动作：清仓台积电(TSM)、CrowdStrike(CRWD)，重新建仓阿里巴巴(BABA)；大幅减仓英伟达(-54.6%，从12.07%降至6.58%)、谷歌(-46.9%)、微软(-25.8%)、联合健康(-33.6%)；苹果再减6.4%但占比被动升至41.05%重回第一，伯克希尔微加至24.18%稳居第二，拼多多加仓26.7%维持第四。组合从Q1的$200亿降至$191亿（-4.5%）。",
         source: "dataroma",
         tags: ["13F", "调仓", "美股"]
       },
