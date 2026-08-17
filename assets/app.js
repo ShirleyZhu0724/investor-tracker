@@ -29,18 +29,24 @@
       skip: { cls: "na",   arrow: "—", txt: "" }
     };
 
-  // cur/prev: 持仓数组；匹配以 name 为准；w 为百分比数值（null=不可比）
+  // 匹配键：优先用 ticker（跨源/跨期对比更稳），无 ticker 时退回 name（大写）
+  function holdingKey(h) {
+    var t = (h.ticker || "").trim();
+    if (t) return "T:" + t;
+    return "N:" + (h.name || "").trim().toUpperCase();
+  }
+  // cur/prev: 持仓数组；匹配以 ticker 为准（兜底 name）；w 为百分比数值（null=不可比）
   function comparePortfolios(cur, prev) {
     var prevMap = {}, curMap = {};
-    cur.forEach(function (h) { curMap[h.name] = h; });
-    if (prev) prev.forEach(function (h) { prevMap[h.name] = h; });
+    cur.forEach(function (h) { curMap[holdingKey(h)] = h; });
+    if (prev) prev.forEach(function (h) { prevMap[holdingKey(h)] = h; });
     var out = [];
     cur.forEach(function (h) {
       if (h.skip) { out.push({ h: h, status: "skip", prevW: null, delta: null }); return; }
-      if (prevMap[h.name] === undefined) {
+      if (prevMap[holdingKey(h)] === undefined) {
         out.push({ h: h, status: "new", prevW: null, delta: null });
       } else {
-        var pw = prevMap[h.name].w, cw = h.w;
+        var pw = prevMap[holdingKey(h)].w, cw = h.w;
         if (pw == null || cw == null) {
           out.push({ h: h, status: "na", prevW: pw, delta: null });
         } else {
@@ -52,7 +58,7 @@
     if (prev) {
       prev.forEach(function (h) {
         if (h.skip) return;
-        if (curMap[h.name] === undefined) {
+        if (curMap[holdingKey(h)] === undefined) {
           out.push({
             h: { name: h.name, ticker: h.ticker, weight: h.weight, note: h.note, source: h.source, date: h.date, account: h.account },
             status: "out", prevW: h.w, delta: null
@@ -147,9 +153,9 @@
     var cur = pf[idx], prev = idx > 0 ? pf[idx - 1] : null;
     var rows = comparePortfolios(cur.holdings, prev ? prev.holdings : null);
 
-    // 判断当前期是否包含 dataroma 风格的明细数据
+    // 判断当前期是否包含 dataroma 风格的明细数据（SEC 13F 期只有 value，不含报价/区间字段）
     var hasDataroma = cur.holdings.some(function (h) {
-      return h.shares || h.reportedPrice || h.value || h.currentPrice || h.weekLow || h.activity;
+      return h.reportedPrice || h.currentPrice || h.change || h.weekLow || h.activity;
     });
 
     // 表头
@@ -157,7 +163,7 @@
     if (hasDataroma) {
       headers = headers.concat(["股数", "已报告价", "价值", "当前价", "+/-已报告价", "52周低", "52周高", "近期活动", "描述"]);
     } else {
-      headers = headers.concat(["描述", "时间"]);
+      headers = headers.concat(["价值", "描述", "时间"]);
     }
 
     var rowsHtml = rows.map(function (r) {
@@ -202,7 +208,7 @@
           '<td>' + (h.activity ? '<span class="act">' + esc(h.activity) + "</span>" : "—") + "</td>" +
           "<td>" + esc(h.note || "") + "</td>";
       } else {
-        cells += "<td>" + esc(h.note || "") + "</td>" + '<td class="muted">' + esc(h.date || "") + "</td>";
+        cells += '<td class="num">' + (h.value || "—") + "</td>" + "<td>" + esc(h.note || "") + "</td>" + '<td class="muted">' + esc(h.date || "") + "</td>";
       }
       return "<tr>" + cells + "</tr>";
     }).join("");
