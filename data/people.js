@@ -23,7 +23,7 @@
 window.META = {
   sample: false,
   updatedAt: "2026-08-17",
-  note: "数据来自公开网络检索（2026-08-01）；2026-08-11 补充金渐成国际账户/精确占比/理念金句/人物画像 + 鹿鼎公 2026-08-10 股数快照（含长江电力做T）；2026-08-17 新增段永平 2026 Q2 13F（dataroma，18只/$19.1B，组合日2026-06-30）；仅供个人跟踪用途，非投资建议。"
+  note: "数据来自公开网络检索（2026-08-01）；2026-08-11 补充金渐成国际账户/精确占比/理念金句/人物画像 + 鹿鼎公 2026-08-10 股数快照（含长江电力做T）；2026-08-17 新增段永平 2026 Q2 13F（dataroma，18只/$19.1B，组合日2026-06-30）；同日新增伯克希尔·哈撒韦（dataroma 29只/$299B）与李录喜马拉雅资本（insiderset/SEC 13F 8只/$3.70B）两家，均含 2026 Q2 13F；仅供个人跟踪用途，非投资建议。"
 };
 
 window.PEOPLE = [
@@ -697,4 +697,131 @@ window.PEOPLE = [
       ]
     }
   }
-];
+,
+    {
+      id: "berkshire",
+      name: "伯克希尔·哈撒韦",
+      platforms: ["dataroma"],
+      tagline: "巴菲特执掌的多元化投资旗舰：保险浮存金 + 权益集中持有",
+      style: "价值投资 / 长期持有 / 集中重仓",
+      riskAppetite: "低（超大盘蓝筹，极少杠杆）",
+      lastUpdate: "2026-08-17",
+      hasDav: false,
+      portfolios: [
+        {
+          date: "2026-06-30",
+          label: "2026年Q2 · 13F",
+          source: "dataroma",
+          portfolioValue: "$299B（13F权益多头估算）",
+          stockCount: 29,
+          note: "伯克希尔2026 Q2 13F（截至6/30）：权益多头29只，以消费/金融/能源为主；苹果仍为第一重仓。13F仅披露美股多头，全资子公司与现金未计入。",
+          holdings: [
+          { name: "Apple Inc.", ticker: "AAPL", weight: "22.04%", w: 22.04, shares: "227,917,808", reportedPrice: "$289.36", value: "$65,950,296,000", currentPrice: "$305.93", change: "5.73%", weekLow: "$222.96", weekHigh: "$344.27", note: "Apple Inc.", date: "2026-06-30" },
+          { name: "American Express", ticker: "AXP", weight: "17.14%", w: 17.14, shares: "151,610,700", reportedPrice: "$338.25", value: "$51,282,319,000", currentPrice: "$342.48", change: "1.25%", weekLow: "$289.26", weekHigh: "$384.36", note: "American Express", date: "2026-06-30" },
+          { name: "Coca Cola Co.", ticker: "KO", weight: "10.86%", w: 10.86, shares: "400,000,000", reportedPrice: "$81.27", value: "$32,507,999,000", currentPrice: "$87.71", change: "7.92%", weekLow: "$64.04", weekHigh: "$90.92", note: "Coca Cola Co.", date: "2026-06-30" },
+          { name: "Alphabet Inc.", ticker: "GOOGL", weight: "9.41%", w: 9.41, shares: "78,791,167", reportedPrice: "$357.37", value: "$28,157,600,000", currentPrice: "$345.90", change: "-3.21%", weekLow: "$196.04", weekHigh: "$408.37", note: "Alphabet Inc.", date: "2026-06-30" },
+          { name: "Bank of America Corp.", ticker: "BAC", weight: "9.20%", w: 9.2, shares: "483,394,015", reportedPrice: "$56.98", value: "$27,543,792,000", currentPrice: "$64.49", change: "13.18%", weekLow: "$45.79", weekHigh: "$65.20", note: "Bank of America Corp.", date: "2026-06-30" },
+          { name: "Chevron Corp.", ticker: "CVX", weight: "4.67%", w: 4.67, shares: "84,375,856", reportedPrice: "$165.76", value: "$13,986,142,000", currentPrice: "$200.00", change: "20.66%", weekLow: "$143.75", weekHigh: "$212.76", note: "Chevron Corp.", date: "2026-06-30" },
+          { name: "Occidental Petroleum", ticker: "OXY", weight: "4.30%", w: 4.3, shares: "264,941,431", reportedPrice: "$48.57", value: "$12,868,205,000", currentPrice: "$58.36", change: "20.16%", weekLow: "$38.44", weekHigh: "$67.14", note: "Occidental Petroleum", date: "2026-06-30" },
+          { name: "Chubb Limited", ticker: "CB", weight: "3.90%", w: 3.9, shares: "34,249,183", reportedPrice: "$340.74", value: "$11,670,067,000", currentPrice: "$343.64", change: "0.85%", weekLow: "$262.86", weekHigh: "$365.91", note: "Chubb Limited", date: "2026-06-30" },
+          { name: "Moody's Corp.", ticker: "MCO", weight: "3.73%", w: 3.73, shares: "24,669,778", reportedPrice: "$452.92", value: "$11,173,436,000", currentPrice: "$484.96", change: "7.07%", weekLow: "$399.61", weekHigh: "$543.25", note: "Moody's Corp.", date: "2026-06-30" },
+          { name: "Alphabet Inc. CL C", ticker: "GOOG", weight: "3.21%", w: 3.21, shares: "27,188,433", reportedPrice: "$353.33", value: "$9,606,489,000", currentPrice: "$343.54", change: "-2.77%", weekLow: "$196.90", weekHigh: "$404.23", note: "Alphabet Inc. CL C", date: "2026-06-30" },
+          { name: "Kraft Heinz Co.", ticker: "KHC", weight: "2.57%", w: 2.57, shares: "325,634,818", reportedPrice: "$23.62", value: "$7,691,494,000", currentPrice: "$25.51", change: "8.00%", weekLow: "$20.66", weekHigh: "$28.09", note: "Kraft Heinz Co.", date: "2026-06-30" },
+          { name: "DaVita HealthCare Partners", ticker: "DVA", weight: "2.15%", w: 2.15, shares: "28,880,209", reportedPrice: "$222.48", value: "$6,425,269,000", currentPrice: "$180.06", change: "-19.07%", weekLow: "$101.00", weekHigh: "$247.49", note: "DaVita HealthCare Partners", date: "2026-06-30" },
+          { name: "Delta Air Lines Inc.", ticker: "DAL", weight: "1.79%", w: 1.79, shares: "57,320,000", reportedPrice: "$93.66", value: "$5,368,591,000", currentPrice: "$89.35", change: "-4.60%", weekLow: "$54.60", weekHigh: "$95.44", note: "Delta Air Lines Inc.", date: "2026-06-30" },
+          { name: "SiriusXM Holdings Inc", ticker: "SIRI", weight: "1.23%", w: 1.23, shares: "124,807,117", reportedPrice: "$29.54", value: "$3,686,803,000", currentPrice: "$28.46", change: "-3.66%", weekLow: "$19.15", weekHigh: "$32.37", note: "SiriusXM Holdings Inc", date: "2026-06-30" },
+          { name: "Verisign Inc.", ticker: "VRSN", weight: "0.76%", w: 0.76, shares: "8,989,880", reportedPrice: "$251.56", value: "$2,261,495,000", currentPrice: "$284.24", change: "12.99%", weekLow: "$207.53", weekHigh: "$312.48", note: "Verisign Inc.", date: "2026-06-30" },
+          { name: "Kroger Co.", ticker: "KR", weight: "0.72%", w: 0.72, shares: "39,000,000", reportedPrice: "$55.53", value: "$2,165,671,000", currentPrice: "$56.69", change: "2.09%", weekLow: "$53.78", weekHigh: "$75.66", note: "Kroger Co.", date: "2026-06-30" },
+          { name: "Ally Financial Inc.", ticker: "ALLY", weight: "0.41%", w: 0.41, shares: "27,000,000", reportedPrice: "$45.95", value: "$1,240,650,000", currentPrice: "$44.91", change: "-2.26%", weekLow: "$35.43", weekHigh: "$46.96", note: "Ally Financial Inc.", date: "2026-06-30" },
+          { name: "Lennar Corp.", ticker: "LEN", weight: "0.40%", w: 0.4, shares: "13,111,741", reportedPrice: "$90.49", value: "$1,186,482,000", currentPrice: "$86.83", change: "-4.04%", weekLow: "$79.83", weekHigh: "$141.39", note: "Lennar Corp.", date: "2026-06-30" },
+          { name: "Liberty Media Corp. Series C Live", ticker: "LLYVK", weight: "0.37%", w: 0.37, shares: "10,587,143", reportedPrice: "$105.64", value: "$1,118,425,000", currentPrice: "$108.86", change: "3.05%", weekLow: "$78.68", weekHigh: "$109.75", note: "Liberty Media Corp. Series C Live", date: "2026-06-30" },
+          { name: "New York Times CL A", ticker: "NYT", weight: "0.37%", w: 0.37, shares: "15,700,000", reportedPrice: "$69.98", value: "$1,098,686,000", currentPrice: "$64.79", change: "-7.42%", weekLow: "$53.65", weekHigh: "$86.83", note: "New York Times CL A", date: "2026-06-30" },
+          { name: "Capital One Financial", ticker: "COF", weight: "0.20%", w: 0.2, shares: "3,000,000", reportedPrice: "$200.62", value: "$601,860,000", currentPrice: "$227.34", change: "13.32%", weekLow: "$174.23", weekHigh: "$257.54", note: "Capital One Financial", date: "2026-06-30" },
+          { name: "Liberty Media Corp. Series A Live", ticker: "LLYVA", weight: "0.17%", w: 0.17, shares: "4,986,588", reportedPrice: "$101.26", value: "$504,942,000", currentPrice: "$104.99", change: "3.68%", weekLow: "$77.12", weekHigh: "$106.06", note: "Liberty Media Corp. Series A Live", date: "2026-06-30" },
+          { name: "Louisiana-Pacific Corp.", ticker: "LPX", weight: "0.15%", w: 0.15, shares: "5,664,793", reportedPrice: "$78.66", value: "$445,593,000", currentPrice: "$73.89", change: "-6.06%", weekLow: "$65.85", weekHigh: "$99.71", note: "Louisiana-Pacific Corp.", date: "2026-06-30" },
+          { name: "Nucor Corp.", ticker: "NUE", weight: "0.14%", w: 0.14, shares: "1,857,752", reportedPrice: "$222.75", value: "$413,814,000", currentPrice: "$268.91", change: "20.72%", weekLow: "$130.11", weekHigh: "$280.11", note: "Nucor Corp.", date: "2026-06-30" },
+          { name: "Macy's Inc.", ticker: "M", weight: "0.06%", w: 0.06, shares: "7,347,426", reportedPrice: "$23.55", value: "$173,031,000", currentPrice: "$23.41", change: "-0.59%", weekLow: "$12.19", weekHigh: "$26.59", note: "Macy's Inc.", date: "2026-06-30" },
+          { name: "NVR Inc.", ticker: "NVR", weight: "0.03%", w: 0.03, shares: "11,112", reportedPrice: "$6813.44", value: "$75,711,000", currentPrice: "$6307.93", change: "-7.42%", weekLow: "$5501.01", weekHigh: "$8618.28", note: "NVR Inc.", date: "2026-06-30" },
+          { name: "Jefferies Financial Group Inc.", ticker: "JEF", weight: "0.01%", w: 0.01, shares: "433,558", reportedPrice: "$49.98", value: "$21,669,000", currentPrice: "$55.14", change: "10.32%", weekLow: "$35.26", weekHigh: "$69.47", note: "Jefferies Financial Group Inc.", date: "2026-06-30" },
+          { name: "Lennar Corp. CL B", ticker: "LEN.B", weight: "0.01%", w: 0.01, shares: "298,117", reportedPrice: "$88.71", value: "$26,446,000", currentPrice: "$85.36", change: "-3.78%", weekLow: "$78.02", weekHigh: "$134.56", note: "Lennar Corp. CL B", date: "2026-06-30" },
+          { name: "D.R. Horton", ticker: "DHI", weight: "0.00%", w: 0.0, shares: "3,564", reportedPrice: "$163.02", value: "$581,000", currentPrice: "$148.81", change: "-8.72%", weekLow: "$130.96", weekHigh: "$182.36", note: "D.R. Horton", date: "2026-06-30" }
+          ]
+        }
+      ],
+      philosophy: {
+        summary: "巴菲特执掌的伯克希尔·哈撒韦：以保险浮存金为低成本杠杆，长期集中持有优质企业股权，强调护城河、管理层能力与长期复利。13F 仅披露其美股多头，全资子公司与现金未计入。",
+        points: [
+          "护城河：偏好具有持久竞争优势的生意",
+          "长期持有：与优秀企业共成长，极少交易",
+          "安全边际：价格远低于内在价值时才出手",
+          "能力圈：只投自己看得懂的生意",
+          "保险浮存金：以低成本负债放大长期收益"
+        ],
+        quotes: [
+          "规则一：永远别亏钱；规则二：永远别忘记规则一",
+          "以合理的价格买入优秀的公司，胜过以便宜的价格买入平庸的公司",
+          "时间是优秀企业的朋友，平庸企业的敌人"
+        ]
+      },
+      viewpoints: [
+        {
+          date: "2026-08-17",
+          content: "2026 Q2 13F（截至6/30）披露：权益组合29只，苹果仍为第一重仓（22.04%），美国运通17.14%、可口可乐10.86%次之；组合以消费、金融、能源为主。",
+          source: "dataroma",
+          tags: ["13F", "美股"]
+        }
+      ]
+    }    ,
+    {
+      id: "himalaya",
+      name: "李录（喜马拉雅资本）",
+      platforms: ["insiderset / SEC 13F"],
+      tagline: "芒格弟子、喜马拉雅资本创始人：极致集中、低换手的价值投资",
+      style: "价值投资 / 极度集中 / 极少交易",
+      riskAppetite: "中（高度集中少数标的）",
+      lastUpdate: "2026-08-17",
+      hasDav: false,
+      portfolios: [
+        {
+          date: "2026-06-30",
+          label: "2026年Q2 · 13F",
+          source: "insiderset (SEC 13F)",
+          portfolioValue: "$3.70B",
+          stockCount: 8,
+          note: "李录喜马拉雅资本2026 Q2 13F（截至6/30，8/14披露）：组合$3.70B、8只，极度集中；谷歌双类(A+B)合计约48%、拼多多22.17%、伯克希尔B 14.98%为前三大。本季大幅减仓/清仓美银、H&R Block、西方石油等，进一步集中。",
+          holdings: [
+          { name: "ALPHABET INC", ticker: "GOOGL", weight: "24.55%", w: 24.55, note: "谷歌 A 类（李录第一重仓）（占比24.55%）。", date: "2026-06-30" },
+          { name: "ALPHABET INC", ticker: "GOOG", weight: "23.39%", w: 23.39, note: "谷歌 C 类（占比23.39%）。", date: "2026-06-30" },
+          { name: "PDD HOLDINGS INC", ticker: "PDD", weight: "22.17%", w: 22.17, note: "中概电商（第二大重仓）（占比22.17%）。", date: "2026-06-30" },
+          { name: "BERKSHIRE HATHAWAY INC DEL", ticker: "BRK.B", weight: "14.98%", w: 14.98, note: "伯克希尔 B 类（压舱石）（占比14.98%）。", date: "2026-06-30" },
+          { name: "EAST WEST BANCORP INC", ticker: "EWBC", weight: "9.68%", w: 9.68, note: "华美银行（占比9.68%）。", date: "2026-06-30" },
+          { name: "CROCS INC", ticker: "CROX", weight: "2.89%", w: 2.89, note: "卡骆驰（占比2.89%）。", date: "2026-06-30" },
+          { name: "TENCENT MUSIC ENTERTAINMENT", ticker: "TME", weight: "1.49%", w: 1.49, note: "腾讯音乐（占比1.49%）。", date: "2026-06-30" },
+          { name: "APPLE INC", ticker: "AAPL", weight: "0.86%", w: 0.86, note: "苹果（占比0.86%）。", date: "2026-06-30" }
+          ]
+        }
+      ],
+      philosophy: {
+        summary: "李录，喜马拉雅资本创始人，查理·芒格亲自提携的华人价值投资者。组合极度集中、换手率极低，重仓少数高确定性标的（谷歌、拼多多、伯克希尔等）。著有《文明、现代化、价值投资与中国》。",
+        points: [
+          "现代化三阶段：农业文明→科技文明→现代化文明",
+          "价值投资：买股票就是买公司的一部分",
+          "极度集中：少而精，宁可空仓也不将就",
+          "长期主义：以十年为单位持有",
+          "能力圈：坚守自己能深度理解的机会"
+        ],
+        quotes: [
+          "价值投资的核心，是以实业的眼光买股票",
+          "宏观我们是无知的，但微观我们可以努力",
+          "投资本质上是赌国运，赌一个国家的文明进程"
+        ]
+      },
+      viewpoints: [
+        {
+          date: "2026-08-17",
+          content: "2026 Q2 13F（截至6/30，8/14披露）组合$3.70B、8只：谷歌双类合计约48%、拼多多22.17%、伯克希尔B 14.98%为前三大；本季大幅减仓/清仓美银、H&R Block、西方石油等，进一步集中。",
+          source: "insiderset / SEC 13F",
+          tags: ["13F", "集中"]
+        }
+      ]
+    }];

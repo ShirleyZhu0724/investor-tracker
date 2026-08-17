@@ -131,7 +131,7 @@
       '<p class="tagline">' + esc(p.tagline || "") + "</p>" +
       "</div><div class=\"head-right\">" +
       '<div class="updated">最近更新：' + esc(p.lastUpdate || "—") + "</div>" +
-      '<a class="davbtn" href="dav/' + esc(p.id) + '.html" target="_blank" rel="noopener">🧠 人格拆解</a>' +
+      (p.hasDav !== false ? '<a class="davbtn" href="dav/' + esc(p.id) + '.html" target="_blank" rel="noopener">🧠 人格拆解</a>' : '') +
       "</div></div>" +
       '<div class="profile-meta">' +
       "<span><b>风格</b>" + esc(p.style || "—") + "</span>" +
