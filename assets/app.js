@@ -275,6 +275,151 @@
     });
   }
 
+  /* ---------- 股数变动明细 ---------- */
+  var TYPE_CN = {
+    BUY: "买入", SELL: "卖出", DIVIDEND_SHARE: "送股", TRANSFER_SHARE: "转增",
+    RIGHTS_ISSUE: "配股", STOCK_SPLIT: "拆股", REVERSE_SPLIT: "合股", ADJUSTMENT: "调整"
+  };
+  var chgFilter = { ticker: "", from: "", to: "" };
+
+  function fmtNum(n) {
+    if (n == null || !isFinite(n)) return "—";
+    return Number(n).toLocaleString("en-US");
+  }
+  function fmtCost(n) {
+    // avgCost 为 0 表示建仓价未披露（H 股），不显示为 0
+    if (n == null || !isFinite(n) || Number(n) === 0) return "—";
+    return Number(n).toFixed(3);
+  }
+  // 该大V 是否有变动数据
+  function changesOf(p) {
+    var C = window.HOLDING_CHANGES;
+    if (!C || !C.changes || !C.changes.length) return null;
+    if (C._meta && C._meta.person && C._meta.person !== p.id) return null;
+    return C;
+  }
+  // 全量推演：得到每条变动之后的持股与成本，按 change.id 索引
+  function changesLedger(C) {
+    if (!window.Holdings) return null;
+    try {
+      var r = window.Holdings.computeFromChanges(C.changes);
+      var after = {};
+      r.log.forEach(function (e) { after[e.change.id] = e; });
+      var nameOf = {};
+      C.changes.forEach(function (c) { if (c.name) nameOf[c.ticker] = c.name; });
+      return { holdings: r.holdings, after: after, nameOf: nameOf };
+    } catch (e) {
+      return { error: e.message };
+    }
+  }
+
+  function changesBodyHTML(C, led) {
+    var q = { ticker: chgFilter.ticker || undefined, from: chgFilter.from || undefined, to: chgFilter.to || undefined };
+    var rows = window.Holdings.queryChanges(C.changes, q);
+    if (!rows.length) return '<p class="muted">当前筛选条件下没有变动记录。</p>';
+    var html = rows.map(function (c) {
+      var a = led.after[c.id] || {};
+      var isBuy = c.type === "BUY" || c.type === "RIGHTS_ISSUE";
+      var isSell = c.type === "SELL";
+      var deltaCls = isBuy ? "sc-add" : (isSell ? "sc-cut" : "sc-flat");
+      var sign = isBuy ? "+" : (isSell ? "−" : "");
+      var inferred = c._inferredCost || (isBuy && c.price == null);
+      return "<tr>" +
+        '<td class="muted nowrap">' + esc(c.date) + "</td>" +
+        "<td><b>" + esc(c.name || led.nameOf[c.ticker] || c.ticker) + '</b> <span class="ticker">' + esc(c.ticker) + "</span></td>" +
+        "<td>" + esc(TYPE_CN[c.type] || c.type) + "</td>" +
+        '<td class="num ' + deltaCls + '">' + sign + fmtNum(Math.abs(c.shares)) + "</td>" +
+        '<td class="num">' + (c.price != null ? c.price : (inferred ? '<span class="muted" title="用户未披露成交价，按当前均价模拟">均价</span>' : "—")) + "</td>" +
+        '<td class="num shares">' + fmtNum(a.sharesAfter) + "</td>" +
+        '<td class="num">' + fmtCost(a.avgCostAfter) + "</td>" +
+        '<td class="chgnote">' + esc(c.note || "") + "</td>" +
+        "</tr>";
+    }).join("");
+    return '<div class="tablewrap"><table class="data changes"><thead><tr>' +
+      ["日期", "标的", "类型", "变动股数", "成交价", "变动后持股", "变动后成本", "备注"].map(function (h) { return "<th>" + h + "</th>"; }).join("") +
+      "</tr></thead><tbody>" + html + "</tbody></table></div>";
+  }
+
+  function renderChanges(p) {
+    var C = changesOf(p);
+    if (!C) return '<section class="card"><h3>股数变动</h3><p class="muted">暂无变动明细数据。</p></section>';
+    if (!window.Holdings) return '<section class="card"><h3>股数变动</h3><p class="muted">计算模块未加载。</p></section>';
+    var led = changesLedger(C);
+    if (led.error) return '<section class="card"><h3>股数变动</h3><p class="muted">推演失败：' + esc(led.error) + "</p></section>";
+
+    var meta = C._meta || {};
+    var tickers = [];
+    C.changes.forEach(function (c) { if (tickers.indexOf(c.ticker) < 0) tickers.push(c.ticker); });
+    tickers.sort();
+
+    var opts = ['<option value="">全部标的（' + tickers.length + "）</option>"].concat(tickers.map(function (t) {
+      return '<option value="' + esc(t) + '"' + (chgFilter.ticker === t ? " selected" : "") + ">" +
+        esc((led.nameOf[t] ? led.nameOf[t] + " " : "") + t) + "</option>";
+    })).join("");
+
+    // 当前持仓汇总（全量推演结果）
+    var sum = led.holdings.slice().sort(function (a, b) { return b.shares - a.shares; }).map(function (h) {
+      return "<tr>" +
+        "<td><b>" + esc(led.nameOf[h.ticker] || h.ticker) + '</b> <span class="ticker">' + esc(h.ticker) + "</span></td>" +
+        '<td class="num shares">' + fmtNum(h.shares) + "</td>" +
+        '<td class="num">' + fmtCost(h.avgCost) + "</td>" +
+        '<td class="num muted">' + (h.costBasis ? fmtNum(Math.round(h.costBasis)) : "—") + "</td>" +
+        '<td class="muted nowrap">' + esc(h.firstDate || "") + "</td>" +
+        "</tr>";
+    }).join("");
+
+    return (
+      '<section class="card">' +
+      "<h3>股数变动明细</h3>" +
+      '<p class="cmpnote">来源：' + esc(meta.source || "—") + "；数据截至 <b>" + esc(meta.asOf || "—") + "</b>。" +
+      "共 " + C.changes.length + " 条变动，覆盖 " + led.holdings.length + " 个标的。</p>" +
+      '<div id="chgWrap">' +
+      '<div class="chgbar">' +
+      "<label>标的 <select data-f=\"ticker\">" + opts + "</select></label>" +
+      "<label>起始 <input data-f=\"from\" type=\"date\" value=\"" + esc(chgFilter.from) + "\" /></label>" +
+      "<label>截止 <input data-f=\"to\" type=\"date\" value=\"" + esc(chgFilter.to) + "\" /></label>" +
+      '<button class="resetbtn" id="chgReset">重置</button>' +
+      "</div>" +
+      '<div id="chgBody">' + changesBodyHTML(C, led) + "</div>" +
+      "</div>" +
+      '<div class="histhead" style="margin-top:22px;">按全量记录推演的当前持仓（含未披露成本的 H 股）</div>' +
+      '<div class="tablewrap"><table class="data changes"><thead><tr>' +
+      ["标的", "当前股数", "持仓成本", "成本合计", "首次建仓"].map(function (h) { return "<th>" + h + "</th>"; }).join("") +
+      "</tr></thead><tbody>" + sum + "</tbody></table></div>" +
+      (meta.note ? '<p class="muted chgfoot">数据口径：' + esc(meta.note) + "</p>" : "") +
+      "</section>"
+    );
+  }
+
+  function bindChanges(p) {
+    var wrap = document.getElementById("chgWrap");
+    if (!wrap) return;
+    var C = changesOf(p);
+    if (!C) return;
+    var led = changesLedger(C);
+    function refresh() {
+      var b = document.getElementById("chgBody");
+      if (b) b.innerHTML = changesBodyHTML(C, led);
+    }
+    wrap.querySelectorAll("[data-f]").forEach(function (el) {
+      el.addEventListener("change", function () {
+        chgFilter[el.dataset.f] = el.value;
+        refresh();
+      });
+    });
+    var rst = document.getElementById("chgReset");
+    if (rst) {
+      rst.addEventListener("click", function () {
+        chgFilter = { ticker: "", from: "", to: "" };
+        wrap.querySelectorAll("[data-f]").forEach(function (el) {
+          if (el.tagName === "SELECT") el.value = "";
+          else el.value = "";
+        });
+        refresh();
+      });
+    }
+  }
+
   function renderViews(p) {
     var vs = (p.viewpoints || []).slice().sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); });
     if (!vs.length) return '<section class="card"><h3>重要观点</h3><p class="muted">暂无数据。</p></section>';
@@ -360,12 +505,14 @@
 
   function renderPerson(p) {
     if (tabState === "cases" && !(p.caseStudies && p.caseStudies.length)) tabState = "holdings";
+    if (tabState === "changes" && !changesOf(p)) tabState = "holdings";
     var tabs = [
       ["holdings", "最新持仓"],
       ["views", "重要观点"],
       ["philo", "投资理念"],
       ["timeline", "跟踪时间线"]
     ];
+    if (changesOf(p)) tabs.splice(1, 0, ["changes", "股数变动"]);
     if (p.caseStudies && p.caseStudies.length) tabs.push(["cases", "泡泡玛特"]);
     var tabHtml = '<div class="tabs">' + tabs.map(function (t) {
       return '<button class="tab ' + (tabState === t[0] ? "active" : "") + '" data-t="' + t[0] + '">' + t[1] + "</button>";
@@ -373,6 +520,7 @@
 
     var content;
     if (tabState === "holdings") content = '<div id="holdingsWrap">' + renderHoldingsHTML(p) + "</div>";
+    else if (tabState === "changes") content = '<div id="changesOuter">' + renderChanges(p) + "</div>";
     else if (tabState === "views") content = renderViews(p);
     else if (tabState === "cases") content = renderCaseStudies(p);
     else if (tabState === "philo") content = renderPhilo(p);
@@ -448,6 +596,7 @@
     main.innerHTML = top + renderPerson(p);
     bindTabs();
     if (tabState === "holdings") bindHoldingSwitcher(p);
+    if (tabState === "changes") bindChanges(p);
   }
 
   render();

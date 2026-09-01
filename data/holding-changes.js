@@ -1,4 +1,5 @@
-{
+/* 自动生成，勿手动修改 —— 源：scripts/holdings/data/changes.json */
+window.HOLDING_CHANGES = {
   "schema": 1,
   "_meta": {
     "person": "ludinggong",
@@ -104,7 +105,7 @@
       "date": "2026-07-31",
       "type": "BUY",
       "shares": 19000,
-      "price": 19.80,
+      "price": 19.8,
       "note": "7月底建仓基线；图1 宝丰能源 成本 19.80，仓位 1.76%"
     },
     {
@@ -127,7 +128,6 @@
       "price": null,
       "note": "7月底建仓基线；H 股建仓价未披露"
     },
-
     {
       "id": "ludinggong-2026-08-cyjd",
       "ticker": "600900.SH",
@@ -189,4 +189,4 @@
       "note": "8月减仓 19k→14k；avgCost=19.80 不变"
     }
   ]
-}
+};
