@@ -164,6 +164,13 @@ table.data.dataroma .act {
 td.sc-add { color: #d9472b; font-weight: 600; }
 td.sc-cut { color: #07a35a; font-weight: 600; }
 td.sc-flat { color: var(--muted); }
+/* 持仓股数列：等宽数字、右对齐，与左右列区分 */
+td.num.shares {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
 
 /* ============ 时间线 ============ */
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }

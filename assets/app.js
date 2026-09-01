@@ -60,7 +60,7 @@
         if (h.skip) return;
         if (curMap[holdingKey(h)] === undefined) {
           out.push({
-            h: { name: h.name, ticker: h.ticker, weight: h.weight, note: h.note, source: h.source, date: h.date, account: h.account },
+            h: { name: h.name, ticker: h.ticker, weight: h.weight, shares: h.shares, note: h.note, source: h.source, date: h.date, account: h.account },
             status: "out", prevW: h.w, delta: null
           });
         }
@@ -158,10 +158,16 @@
       return h.reportedPrice || h.currentPrice || h.change || h.weekLow || h.activity;
     });
 
+    // 本期是否存在“持仓股数”数据（鹿鼎公等手动披露股数的组合才有）
+    var hasShares = cur.holdings.some(function (h) { return h.shares; });
+
     // 表头
-    var headers = ["标的", "仓位", "变化方向", "股数变化", "上一期占比"];
+    var headers = ["标的", "仓位", "变化方向"];
+    if (hasShares) headers.push("持仓股数");
+    headers = headers.concat(["股数变化", "上一期占比"]);
     if (hasDataroma) {
-      headers = headers.concat(["股数", "已报告价", "价值", "当前价", "+/-已报告价", "52周低", "52周高", "近期活动", "描述"]);
+      // dataroma 明细里的“股数”已在前面「持仓股数」列呈现，此处不再重复
+      headers = headers.concat(["已报告价", "价值", "当前价", "+/-已报告价", "52周低", "52周高", "近期活动", "描述"]);
     } else {
       headers = headers.concat(["价值", "描述", "时间"]);
     }
@@ -182,12 +188,16 @@
         else scCls = "sc-flat";
       }
       var scCell = '<td class="num ' + scCls + '">' + (h.shareChange ? esc(h.shareChange) : "—") + "</td>";
+      // 清仓行：当期已无持仓，股数记 0（与仓位列 0% 口径一致）
+      var sharesCell = '<td class="num shares">' +
+        (r.status === "out" ? "0" : (h.shares ? esc(h.shares) : "—")) + "</td>";
       var cells =
         "<td><b>" + esc(h.name) + "</b>" +
           (h.ticker ? ' <span class="ticker">' + esc(h.ticker) + "</span>" : "") +
           (h.account ? ' <span class="acct">' + esc(h.account) + "</span>" : "") + "</td>" +
         "<td>" + esc(wCell) + "</td>" +
         '<td><span class="dir ' + d.cls + '">' + dirTxt + "</span></td>" +
+        (hasShares ? sharesCell : "") +
         scCell +
         '<td class="muted">' + prevCell + "</td>";
 
@@ -198,7 +208,6 @@
           priceDown = h.change.indexOf("-") === 0;
         }
         cells +=
-          '<td class="num">' + (h.shares || "—") + "</td>" +
           '<td class="num">' + (h.reportedPrice || "—") + "</td>" +
           '<td class="num">' + (h.value || "—") + "</td>" +
           '<td class="num">' + (h.currentPrice || "—") + "</td>" +
