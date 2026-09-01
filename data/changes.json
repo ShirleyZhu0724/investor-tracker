@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "_meta": {
+    "source": "鹿鼎公（超级鹿鼎公）2026-07-31 → 2026-08-31 持仓变动截图（用户提供）",
+    "asOf": "2026-08-31",
+    "note": "录入规则：12 个 ticker 全部录 7-31 BUY 作为建仓基线（股数 = 图2 的「202607股数」列；建仓价 A 股取自图1「成本」列，H 股留 null），6 个有变动的 ticker 再录 8-10 变动（股数变动值 = 图2「股数变动」列，方向 BUY/SELL 按正负取）。8-10 为占位日期——用户 8-10 截图时数据已是 8-31 状态，真实变动日期不详；统一记 8-10。变动价格用户未披露，按当前均价模拟（_inferredCost 标记）。H 股 5 个 ticker（中煤/华能/中海油/新城/腾讯）的「成本」列在图1中显示异常（疑截图工具错位），故建仓价留 null；后续若用户补充精确成本可追加 ADJUSTMENT 记录覆盖。变动=0 的 6 个 ticker（中煤/华能/中海油/新城/中孚/腾讯）8 月无 delta 记录。A→H 市场切换未录（无明确证据）。"
+  },
+  "changes": [
+    {
+      "id": "ludinggong-2026-07-cyjd",
+      "ticker": "600900.SH",
+      "name": "长江电力",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 137000,
+      "price": 25.09,
+      "note": "7月底建仓基线；图1 长江电力 成本 25.09，仓位 21.05%。鹿鼎公 7→8 月间有做T（成本26.656→25.09 接回）"
+    },
+    {
+      "id": "ludinggong-2026-07-shgf",
+      "ticker": "000933.SZ",
+      "name": "神火股份",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 117500,
+      "price": 26.36,
+      "note": "7月底建仓基线；图1 神火股份 成本 26.36，仓位 14.36%"
+    },
+    {
+      "id": "ludinggong-2026-07-ylgf",
+      "ticker": "000807.SZ",
+      "name": "云铝股份",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 85000,
+      "price": 20.56,
+      "note": "7月底建仓基线；图1 云铝股份 成本 20.56，仓位 13.14%"
+    },
+    {
+      "id": "ludinggong-2026-07-zmny",
+      "ticker": "01898.HK",
+      "name": "中煤能源",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 195000,
+      "price": null,
+      "note": "7月底建仓基线；H 股建仓价未披露（图1「成本」-3.05 异常），avgCost=0 表示成本未知"
+    },
+    {
+      "id": "ludinggong-2026-07-hngj",
+      "ticker": "00902.HK",
+      "name": "华能国际电力股份",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 280000,
+      "price": null,
+      "note": "7月底建仓基线；H 股建仓价未披露"
+    },
+    {
+      "id": "ludinggong-2026-07-sxny",
+      "ticker": "001286.SZ",
+      "name": "陕西能源",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 120000,
+      "price": 9.15,
+      "note": "7月底建仓基线；图1 陕西能源 成本 9.15，仓位 4.88%"
+    },
+    {
+      "id": "ludinggong-2026-07-zfsy",
+      "ticker": "600595.SH",
+      "name": "中孚实业",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 120000,
+      "price": 6.03,
+      "note": "7月底建仓基线；图1 中孚实业 成本 6.03，仓位 3.82%"
+    },
+    {
+      "id": "ludinggong-2026-07-zhyy",
+      "ticker": "00883.HK",
+      "name": "中国海洋石油",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 30000,
+      "price": null,
+      "note": "7月底建仓基线；H 股建仓价未披露（图1「成本」25.66 疑为现价错位）"
+    },
+    {
+      "id": "ludinggong-2026-07-xcfz",
+      "ticker": "01030.HK",
+      "name": "新城发展",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 550000,
+      "price": null,
+      "note": "7月底建仓基线；H 股建仓价未披露"
+    },
+    {
+      "id": "ludinggong-2026-07-bfny",
+      "ticker": "600989.SH",
+      "name": "宝丰能源",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 19000,
+      "price": 19.80,
+      "note": "7月底建仓基线；图1 宝丰能源 成本 19.80，仓位 1.76%"
+    },
+    {
+      "id": "ludinggong-2026-07-sxmy",
+      "ticker": "601225.SH",
+      "name": "陕西煤业",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 15800,
+      "price": 11.31,
+      "note": "7月底建仓基线；图1 陕西煤业 成本 11.31，仓位 1.24%（盈亏比例 144.12%，低位建仓或送转股历史）"
+    },
+    {
+      "id": "ludinggong-2026-07-txkg",
+      "ticker": "00700.HK",
+      "name": "腾讯控股",
+      "date": "2026-07-31",
+      "type": "BUY",
+      "shares": 300,
+      "price": null,
+      "note": "7月底建仓基线；H 股建仓价未披露"
+    },
+
+    {
+      "id": "ludinggong-2026-08-cyjd",
+      "ticker": "600900.SH",
+      "name": "长江电力",
+      "date": "2026-08-10",
+      "type": "BUY",
+      "shares": 10000,
+      "price": null,
+      "note": "8月加仓 137k→147k；价格未披露，按当前均价 25.09 模拟（avg 不变）"
+    },
+    {
+      "id": "ludinggong-2026-08-ylgf",
+      "ticker": "000807.SZ",
+      "name": "云铝股份",
+      "date": "2026-08-10",
+      "type": "BUY",
+      "shares": 10100,
+      "price": null,
+      "note": "8月加仓 85k→95.1k；价格未披露，按当前均价 20.56 模拟"
+    },
+    {
+      "id": "ludinggong-2026-08-shgf",
+      "ticker": "000933.SZ",
+      "name": "神火股份",
+      "date": "2026-08-10",
+      "type": "SELL",
+      "shares": 15000,
+      "price": null,
+      "note": "8月减仓 117.5k→102.5k；价格未披露，avgCost=26.36 不变"
+    },
+    {
+      "id": "ludinggong-2026-08-sxny",
+      "ticker": "001286.SZ",
+      "name": "陕西能源",
+      "date": "2026-08-10",
+      "type": "SELL",
+      "shares": 20000,
+      "price": null,
+      "note": "8月减仓 120k→100k；avgCost=9.15 不变"
+    },
+    {
+      "id": "ludinggong-2026-08-sxmy",
+      "ticker": "601225.SH",
+      "name": "陕西煤业",
+      "date": "2026-08-10",
+      "type": "SELL",
+      "shares": 7000,
+      "price": null,
+      "note": "8月减仓 15.8k→8.8k；avgCost=11.31 不变"
+    },
+    {
+      "id": "ludinggong-2026-08-bfny",
+      "ticker": "600989.SH",
+      "name": "宝丰能源",
+      "date": "2026-08-10",
+      "type": "SELL",
+      "shares": 5000,
+      "price": null,
+      "note": "8月减仓 19k→14k；avgCost=19.80 不变"
+    }
+  ]
+}
